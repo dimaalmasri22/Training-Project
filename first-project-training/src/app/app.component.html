@@ -1,0 +1,27 @@
+<app-header/>
+<main>
+  <ul id="users">
+    @for (user of users ;track user.id) {
+      <li>
+        <app-side-bar (select)="onSelectUser($event)" [avatar]="user.avatar" [id]="user.id" [name]="user.name"/>
+      </li>
+    }
+    @empty {
+      <li>No items available.</li>
+    }
+<!--    <li>-->
+<!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[0].avatar" [id]="users[0].id" [name]="users[0].name"/>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[1].avatar" [id]="users[1].id" [name]="users[1].name"/>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[2].avatar"  [id]="users[2].id"[name]="users[2].name"/>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[3].avatar" [id]="users[3].id" [name]="users[3].name"/>-->
+<!--    </li>-->
+  </ul>
+  <app-content [userName]="selectedUser ?selectedUser.name:'dima alamsri'"/>
+<!--  <app-content [userName]="selectedUser?.name"/>-->
+</main>
