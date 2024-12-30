@@ -4,16 +4,16 @@ import {SideBarComponent} from './shared-components/side-bar/side-bar.component'
 import {ContentComponent} from './shared-components/content/content.component';
 import {DUMMY_USERS} from './dummy-users';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, SideBarComponent, ContentComponent, FormsModule],
+  imports: [HeaderComponent, SideBarComponent, ContentComponent, FormsModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
  users = DUMMY_USERS;
-  selectValue:string = 'Please select a user';
  //  selectedUserId = signal('u1');
  //
  //  get selectedUser(){
@@ -23,7 +23,7 @@ export class AppComponent {
  //   this.selectedUserId.set(id);
  // }
 
-  selectedUserId = 'u1';
+  selectedUserId?:String;
 
   get selectedUser(){
     // return this.users.find(user => user.id === this.selectedUserId)!;

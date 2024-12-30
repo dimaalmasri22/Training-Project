@@ -1,1 +1,19 @@
-<h2>{{userName}}</h2>
+<section id="tasks">
+  <header>
+    <h2>{{ userName}}'s Tasks</h2>
+    <menu>
+      <button>
+        Add Task
+      </button>
+    </menu>
+  </header>
+  <ul>
+    @for ( Task of userSelectedTasks; track Task.id) {
+      <li><app-task [Task]="Task" ></app-task></li>
+    } @empty {
+      <article class="notification-banner">
+        <h2 style="color: #25113d;">No Tasks Available!</h2>
+      </article>
+    }
+  </ul>
+</section>

@@ -3,14 +3,25 @@
   <ul id="users">
     @for (user of users ;track user.id) {
       <li>
-        <app-side-bar (select)="onSelectUser($event)" [avatar]="user.avatar" [id]="user.id" [name]="user.name"/>
+<!--        <app-side-bar (select)="onSelectUser($event)" [avatar]="user.avatar" [id]="user.id" [name]="user.name"/>-->
+            <app-side-bar (select)="onSelectUser($event)" [user]="user"/>
       </li>
     }
     @empty {
       <li>No items available.</li>
     }
+<!--   /////////////////////////////// ORRRR-/////////////////////////////////////////////-->
+
+<!--   <li *ngFor="let user of users ; index as i ;">-->
+<!--      <app-side-bar (select)="onSelectUser($event)" [user]="user"/>-->
+<!--      {{i}}-->
+<!--    </li>-->
+
+<!--    //////////////////////STATIC////////////////////////-->
+
 <!--    <li>-->
-<!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[0].avatar" [id]="users[0].id" [name]="users[0].name"/>-->
+<!--      <app-side-bar (select)="onSelectUser($event)"
+[avatar]="users[0].avatar" [id]="users[0].id" [name]="users[0].name"/>-->
 <!--    </li>-->
 <!--    <li>-->
 <!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[1].avatar" [id]="users[1].id" [name]="users[1].name"/>-->
@@ -21,7 +32,28 @@
 <!--    <li>-->
 <!--      <app-side-bar (select)="onSelectUser($event)" [avatar]="users[3].avatar" [id]="users[3].id" [name]="users[3].name"/>-->
 <!--    </li>-->
+
+    <!--    //////////////////////STATIC////////////////////////-->
+
+
   </ul>
-  <app-content [userName]="selectedUser ?selectedUser.name:'dima alamsri'"/>
-<!--  <app-content [userName]="selectedUser?.name"/>-->
+<!--  <app-content [userName]="selectedUser ?selectedUser.name:'Please select a user'"/>-->
+
+<!--  <div>-->
+  @if (selectedUser){
+    <app-content  [userName]="selectedUser.name" [userId]="selectedUser.id"/>
+  } @else {
+    <h1 id="fallback">Please Select A User</h1>
+  }
+    <!--  // OR-->
+<!--  <app-content *ngIf="selectedUser" [userName]="selectedUser.name"/>-->
+<!--    <ng-template [ngIf]="!selectedUser">-->
+<!--      <h1 id="fallback2">Please Select A User</h1>-->
+<!--    </ng-template>-->
+<!--    //////OR////////////-->
+<!--    <app-content *ngIf="selectedUser; else fallback3" [userName]="selectedUser.name"/>-->
+<!--    <ng-template #fallback3>-->
+<!--      <h1 id="fallback3">Please Select A User</h1>-->
+<!--    </ng-template>-->
+<!--  </div>-->
 </main>

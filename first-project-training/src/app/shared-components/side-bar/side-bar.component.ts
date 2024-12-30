@@ -1,7 +1,7 @@
 import {Component, computed, EventEmitter, Input, input, Output, signal,output} from '@angular/core';
 import { DUMMY_USERS } from '../../dummy-users'
 import {NgForOf} from '@angular/common';
-
+import {User} from './users.model'
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 
 @Component({
@@ -29,9 +29,10 @@ export class SideBarComponent {
   //   this.selectedUser.set(DUMMY_USERS[randomIndex]);
   // }
 
-  @Input({required:true}) avatar!: string;
-  @Input({required:true}) id!: string;
-  @Input({required:true}) name!: string;
+  // @Input({required:true}) avatar!: string;
+  // @Input({required:true}) id!: string;
+  // @Input({required:true}) name!: string;
+  @Input({required:true}) user!: User
   // @Output() select = new EventEmitter();
   select = output<string>()
   // avatar = input.required<string>()
@@ -40,11 +41,11 @@ export class SideBarComponent {
 
   // imagePath = computed(()=>{return 'assets/users/' + this.avatar();})
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   onSelectUser(){
     console.log(this.select)
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
