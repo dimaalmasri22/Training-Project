@@ -1,7 +1,7 @@
-<div >
+<app-card>
 <!--  <button (click)="onSelectUser($event,name)">-->
-    <button (click)="onSelectUser()">
+    <button [class.active]="selected" (click)="onSelectUser()">
     <img [src]="imagePath" [alt]="user.name">
     <span>{{ user.name }}</span>
   </button>
-</div>
+</app-card>
