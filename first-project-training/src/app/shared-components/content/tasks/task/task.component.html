@@ -1,6 +1,9 @@
 <app-card>
 <article>
-  <h2>{{Task?.title}}</h2>
+  <div class="flex-between">
+    <h2>{{Task?.title}}</h2>
+    <mat-icon  svgIcon="x-icon" aria-hidden="false" aria-label="Example remove SVG icon" (click)="completeTask2()"></mat-icon>
+  </div>
   <time>{{Task?.dueDate | date:'long'}}</time>
   <p>{{Task?.summary}}</p>
   <p class="actions">

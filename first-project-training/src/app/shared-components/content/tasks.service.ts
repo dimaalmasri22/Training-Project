@@ -1,6 +1,6 @@
 import {DummyTasks} from './task.model';
 import {FormControl} from '@angular/forms';
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,13 @@ export class TasksService {
     },
   ]
 
+  constructor() {
+   const tasks = localStorage.getItem('tasks');
+
+   if(tasks){
+     this.dummyTasks = JSON.parse(tasks);
+   }
+  }
   getUserTasks (userId:string) {
     return this.dummyTasks.filter(task => {
       return task.userId === userId;
@@ -54,12 +61,17 @@ export class TasksService {
 
     //   to add at the beginning
     this.dummyTasks.unshift(taskObj);
+    this.saveTask();
   }
 
   RemoveTask(TaskValue:DummyTasks){
     // this.dummyTasks.splice( this.dummyTasks.findIndex(task => task.id === TaskValue.id),1)
     // OR //
     this.dummyTasks = this.dummyTasks.filter(task => {return task.id !== TaskValue.id});
+    this.saveTask();
+  }
+  private saveTask () {
+   localStorage.setItem('tasks', JSON.stringify(this.dummyTasks));
   }
 
 }

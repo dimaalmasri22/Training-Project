@@ -36,3 +36,11 @@ time {
   background-color: #4a0774;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
+mat-icon:hover,
+.actions button:active{
+  cursor: pointer;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
