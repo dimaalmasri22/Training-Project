@@ -1,15 +1,21 @@
+@if (isAddingTask){
+<!--  <app-new-task (cancelTask)="onCancelAddTask()" (addTask)="onAddTask($event)"/>-->
+
+  <app-new-task (cancelTask)="onCancelAddTask()" [userId]="userId" />
+}
+
 <section id="tasks">
   <header>
     <h2>{{ userName}}'s Tasks</h2>
     <menu>
-      <button>
+      <button (click)="onStartAddTask()">
         Add Task
       </button>
     </menu>
   </header>
   <ul>
     @for ( Task of userSelectedTasks; track Task.id) {
-      <li><app-task [Task]="Task" ></app-task></li>
+      <li><app-task [Task]="Task" (removeTask)="RemoveTask($event)" ></app-task></li>
     } @empty {
       <article class="notification-banner">
         <h2 style="color: #25113d;">No Tasks Available!</h2>

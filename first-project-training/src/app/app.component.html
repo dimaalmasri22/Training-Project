@@ -4,7 +4,7 @@
     @for (user of users ;track user.id) {
       <li>
 <!--        <app-side-bar (select)="onSelectUser($event)" [avatar]="user.avatar" [id]="user.id" [name]="user.name"/>-->
-            <app-side-bar (select)="onSelectUser($event)" [user]="user"/>
+            <app-side-bar (select)="onSelectUser($event)" [selected]="user.id === selectedUserId" [user]="user"/>
       </li>
     }
     @empty {

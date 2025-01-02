@@ -2,6 +2,7 @@ import {Component, computed, EventEmitter, Input, input, Output, signal,output} 
 import { DUMMY_USERS } from '../../dummy-users'
 import {NgForOf} from '@angular/common';
 import {User} from './users.model'
+import {CardComponent} from '../../shared/card/card.component';
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 
 @Component({
@@ -9,7 +10,8 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   standalone: true,
   templateUrl: './side-bar.component.html',
   imports: [
-    NgForOf
+    NgForOf,
+    CardComponent
   ],
   styleUrl: './side-bar.component.scss'
 })
@@ -35,6 +37,8 @@ export class SideBarComponent {
   @Input({required:true}) user!: User
   // @Output() select = new EventEmitter();
   select = output<string>()
+  @Input({required:true}) selected!: boolean;
+
   // avatar = input.required<string>()
   // name = input<string>('x')
 

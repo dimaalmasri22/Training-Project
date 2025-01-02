@@ -1,0 +1,46 @@
+<div class="backdrop" (click)="onCloseDialog()"></div>
+<dialog open>
+  <h2>Add Task</h2>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <p>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" [(ngModel)]="enteredTitle" #title="ngModel" required minlength="3" customValidator/>
+    </p>
+    <div *ngIf="title.invalid && title.touched" >
+      <small class = "errorMessage" *ngIf="title.errors?.['required']">Title is required.</small>
+      <small class = "errorMessage" *ngIf="title.errors?.['minlength']">
+        Title must be at least 3 characters long.
+      </small>
+      <small class = "errorMessage" *ngIf="title.errors?.['forbiddenName']">
+        Title cannot be "admin".
+      </small>
+    </div>
+    <p>
+      <label for="summary">Summary</label>
+      <textarea id="summary" rows="5" name="summary" [(ngModel)]="enteredSummary"  #descriptionField="ngModel" required minlength="10" maxlength="200"></textarea>
+    </p>
+    <div *ngIf="descriptionField.invalid && descriptionField.touched">
+      <small class = "errorMessage" *ngIf="descriptionField.errors?.['required']">Summary is required.</small>
+      <small class = "errorMessage" *ngIf="descriptionField.errors?.['minlength']">
+        Minimum 10 characters are required.
+      </small>
+      <small class = "errorMessage" *ngIf="descriptionField.errors?.['maxlength']">
+        Maximum 200 characters allowed.
+      </small>
+    </div>
+    <p>
+      <label for="dueDate">Due Date</label>
+      <input type="date" id="dueDate" name="dueDate" [(ngModel)]="enteredDueDate"   #dueDateField="ngModel" required futureDateValidator/>
+    </p>
+    <div *ngIf="dueDateField.invalid && dueDateField.touched">
+      <small class = "errorMessage" *ngIf="dueDateField.errors?.['required']">Due date is required.</small>
+      <small class = "errorMessage" *ngIf="dueDateField.errors?.['invalidDate']">
+        The due date must be a future date.
+      </small>
+    </div>
+    <p class="actions">
+      <button type="button" (click)="onCloseDialog()">Cancel</button>
+      <button type="submit">Create</button>
+    </p>
+  </form>
+</dialog>
